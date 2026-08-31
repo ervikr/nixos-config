@@ -1,0 +1,16 @@
+{ config, pkgs, ...}:
+# Regional and localization settings for NixOS
+# This module sets timezone, locale, and keymap for the system.
+{
+  # Set the system time zone
+  time.timeZone = "Europe/Oslo";
+
+  # Set the default locale for internationalization
+  i18n.defaultLocale = "en_GB.UTF-8";
+
+  # Set the console keymap (keyboard layout)
+  console.keyMap = "no";
+
+  # Set the keyboard layout for X11/Wayland desktop environments (e.g. Plasma)
+  services.xserver.xkb.layout = "no";
+}

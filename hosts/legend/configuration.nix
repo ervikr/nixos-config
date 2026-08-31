@@ -8,6 +8,24 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      ../../modules/options/bluetooth.nix
+      ../../modules/options/local-hardware-time.nix
+      ../../modules/options/region.nix
+      ../../modules/browsers.nix
+      ../../modules/development.nix
+      ../../modules/docker.nix
+      ../../modules/gaming.nix
+      ../../modules/git.nix
+      ../../modules/gui-apps.nix
+      ../../modules/networking-tools.nix
+      ../../modules/network-sim.nix # imports packet tracer
+      ../../modules/plasma.nix
+      # ../../modules/podman.nix
+      ../../modules/proton-apps.nix
+      ../../modules/shell.nix
+      # ../../modules/tailscale-client.nix
+      ../../modules/vpn.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -15,21 +33,17 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
 
-
   networking.hostName = "legend"; # Define your hostname.
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Oslo";
+  networking.firewall.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -38,16 +52,7 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-  services = {
-    desktopManager.plasma6.enable = true;
 
-    # Default display manager for Plasma
-    displayManager.plasma-login-manager.enable = true;
-
-    # Optionally enable xserver
-    xserver.enable = true;
-    xserver.xkb.layout = "no";
-  };
 
   # Configure keymap in X11
   # services.xserver.xkb.options = "eurosign:e,caps:escAPE";
@@ -55,99 +60,50 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound.
+  # Enable sound with pipewire
   services.pulseaudio.enable = false;
-  # OR
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "obsidian"
-    "cisco-packet-tracer"
-    "discord"
-    "proton-authenticator"
-    "spotify"
-    "modrinth-app"
-    "modrinth-app-unwrapped"
+    # "obsidian"
+    # "cisco-packet-tracer"
+    # "discord"
+    # "proton-authenticator"
+    # "spotify"
+    # "modrinth-app"
+    # "modrinth-app-unwrapped"
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.daniel = {
     isNormalUser = true;
+    createHome = true;
     description = "Daniel Ervik Riiber";
-    extraGroups = [ "wheel" "networkmanager" "wireshark" "dialout" ]; # Enable ‘sudo’ for the user.
+    # wheel group gives sudo accesss, dialout for accessing tty
+    extraGroups = [ "wheel" "networkmanager" "wireshark" "dialout" ];
     packages = with pkgs; [
-      tree
-      readest
-      obsidian
-      cisco-packet-tracer_9
-      gns3-gui
-      gns3-server
-      zed-editor
-      putty
-      proton-vpn
-      proton-pass
-      protonmail-desktop
-      discord
-      element-desktop
-      proton-authenticator
-      spotify
-      localsend
-      wireshark
-      modrinth-app
-      jdk25
-      github-cli
+      #pkgs
     ];
-  };
-
-  programs.firefox = {
-    enable = true;
-
-    languagePacks = [ "en-GB" "nb-NO" ];
-
-    preferences = {
-      "privacy.resistFingerprinting" = true;
-    };
-
-    policies = {
-      DisableTelemetry = true;
-    };
-  };
-
-  programs.wireshark = {
-    enable = true;
-    dumpcap.enable = true;
-  };
-
-  virtualisation.docker = {
-    enable = true;
   };
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    alacritty
-    btop
-    gcc
-    screen
-    tmux
-    git
-    direnv
-    vlc
-    man-pages
-    man-pages-posix
-    dig
-    openconnect
+    vim
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nix.settings.allowed-users = [ "@wheel" "daniel" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -167,7 +123,6 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-  networking.firewall.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
