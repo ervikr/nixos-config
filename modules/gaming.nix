@@ -11,7 +11,7 @@
     #pkgs.jdk8
     #pkgs.jdk17
     #pkgs.jdk21
-    # pkgs.jdk25
+    #pkgs.jdk25
   ];
 
 
