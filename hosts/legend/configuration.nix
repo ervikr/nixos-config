@@ -27,11 +27,12 @@
       # ../../modules/tailscale-client.nix
       ../../modules/vpn.nix
       ../../modules/virtualbox.nix
+      ../../modules/secureboot.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
 
 
   networking.hostName = "legend"; # Define your hostname.

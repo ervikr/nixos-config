@@ -9,13 +9,19 @@
     # Add nixpkgs-stable input for stable packages
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-26.05";
 
+    # Lanzaboote for Secure Boot support
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, lanzaboote, home-manager, ... }@inputs:
     let
       # Import the variables from vars.nix
       # vars = import ./vars.nix;
@@ -62,7 +68,7 @@
       nixosConfigurations = {
         # School laptop configuration
         legend = mkNixOSConfig "x86_64-linux" ./hosts/legend/configuration.nix [
-          # lanzaboote.nixosModules.lanzaboote
+          lanzaboote.nixosModules.lanzaboote
         ];
     };
   };
