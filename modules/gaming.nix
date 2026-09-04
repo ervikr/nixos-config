@@ -4,14 +4,14 @@
   # Add gaming related packages to system environment
   environment.systemPackages = [
     # From stable channel
-    pkgs-stable.modrinth-app
+    # pkgs-stable.modrinth-app
 
     # Add Java JDK for minecraft
     # Available through symlink: /run/current-system/sw/bin/java
     #pkgs.jdk8
     #pkgs.jdk17
     #pkgs.jdk21
-    pkgs.jdk25
+    # pkgs.jdk25
   ];
 
 

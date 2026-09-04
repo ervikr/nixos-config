@@ -26,6 +26,7 @@
       ../../modules/shell.nix
       # ../../modules/tailscale-client.nix
       ../../modules/vpn.nix
+      ../../modules/virtualbox.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -39,6 +40,8 @@
   networking.networkmanager.enable = true;
 
   networking.firewall.enable = true;
+
+  programs.ssh.startAgent = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
