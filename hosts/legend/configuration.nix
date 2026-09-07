@@ -39,6 +39,7 @@
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
+  boot.loader.systemd-boot.enable = true;
 
   networking.firewall.enable = true;
 

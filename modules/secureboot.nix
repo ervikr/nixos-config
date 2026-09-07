@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, pkgs-stable, ... }:
 
 {
   # Lanzaboote currently replaces the systemd-boot module.
@@ -21,11 +21,11 @@
 
 
   # Optional but recommended
-  boot.kernelParams = [
-    "lockdown=integrity"
-  ];
+  # boot.kernelParams = [
+  #   "lockdown=integrity"
+  # ];
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs-stable; [
     sbctl  # Secure Boot control tool
   ];
 }
