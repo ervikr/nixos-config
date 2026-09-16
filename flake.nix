@@ -15,13 +15,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Main repository not updated since 2023, using a fork with last commit (per 17.09.2026)
+    openconnect-sso = {
+      url = "github:chpxu/openconnect-sso/bbec987524660950b7e265d7f17bcb8009d77090";
+      flake = false;
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, lanzaboote, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, lanzaboote, home-manager, openconnect-sso, ... }@inputs:
     let
       # Import the variables from vars.nix
       # vars = import ./vars.nix;
@@ -41,6 +47,7 @@
           # Pass inputs, vars, AND pkgs-stable to all modules
           specialArgs = {
             # inherit inputs vars;
+            # inherit inputs;
             pkgs-stable = pkgs-stable-import;
           };
 
@@ -64,11 +71,18 @@
           ] ++ extraModules;
         };
 
+        # Reusable overlay module, so any host can opt in by adding it to its extraModules list
+            openconnectSsoOverlay = {
+              nixpkgs.overlays = [
+                (import "${openconnect-sso}/overlay.nix")
+              ];
+            };
     in {
       nixosConfigurations = {
         # School laptop configuration
         legend = mkNixOSConfig "x86_64-linux" ./hosts/legend/configuration.nix [
           lanzaboote.nixosModules.lanzaboote
+          openconnectSsoOverlay
         ];
     };
   };

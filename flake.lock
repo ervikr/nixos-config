@@ -129,6 +129,23 @@
         "type": "github"
       }
     },
+    "openconnect-sso": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787133447,
+        "narHash": "sha256-5z4pJZGVwzlR8Ifryt718DYOQL4VwniusE2JJwV25Cs=",
+        "owner": "chpxu",
+        "repo": "openconnect-sso",
+        "rev": "bbec987524660950b7e265d7f17bcb8009d77090",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chpxu",
+        "repo": "openconnect-sso",
+        "rev": "bbec987524660950b7e265d7f17bcb8009d77090",
+        "type": "github"
+      }
+    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -157,7 +174,8 @@
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-stable": "nixpkgs-stable"
+        "nixpkgs-stable": "nixpkgs-stable",
+        "openconnect-sso": "openconnect-sso"
       }
     },
     "rust-overlay": {
