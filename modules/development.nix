@@ -21,6 +21,11 @@
     vscode
     zed-editor
 
+    #AI
+    pi-coding-agent
+    opencode
+    opencode-desktop
+
     direnv
     gcc
 
