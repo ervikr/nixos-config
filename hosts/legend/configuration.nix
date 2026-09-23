@@ -12,6 +12,7 @@
       ../../modules/options/bluetooth.nix
       ../../modules/options/local-hardware-time.nix
       ../../modules/options/region.nix
+      ../../modules/options/nh.nix
       ../../modules/browsers.nix
       ../../modules/development.nix
       ../../modules/docker.nix
@@ -93,7 +94,7 @@
     createHome = true;
     description = "Daniel Ervik Riiber";
     # wheel group gives sudo accesss, dialout for accessing tty
-    extraGroups = [ "wheel" "networkmanager" "wireshark" "dialout" ];
+    extraGroups = [ "wheel" "networkmanager" "wireshark" "dialout" "libvirtd" ];
     packages = with pkgs; [
       #pkgs
     ];
