@@ -29,6 +29,7 @@
       ../../modules/vpn.nix
       ../../modules/virtualbox.nix
       ../../modules/secureboot.nix
+      ../../modules/qemu-virt.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
