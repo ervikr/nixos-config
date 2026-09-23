@@ -95,7 +95,7 @@
     createHome = true;
     description = "Daniel Ervik Riiber";
     # wheel group gives sudo accesss, dialout for accessing tty
-    extraGroups = [ "wheel" "networkmanager" "wireshark" "dialout" "libvirtd" ];
+    extraGroups = [ "wheel" "networkmanager" "wireshark" "dialout" "libvirtd" "tss" ];
     packages = with pkgs; [
       #pkgs
     ];
