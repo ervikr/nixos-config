@@ -31,6 +31,7 @@
       ../../modules/secureboot.nix
       ../../modules/qemu-virt.nix
       ../../modules/flatpak.nix
+      ../../modules/mistral-ai.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
