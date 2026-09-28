@@ -30,6 +30,7 @@
       ../../modules/virtualbox.nix
       ../../modules/secureboot.nix
       ../../modules/qemu-virt.nix
+      ../../modules/flatpak.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
