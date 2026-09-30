@@ -10,6 +10,10 @@
     spotify
     localsend
     vlc
+    blanket
+    appflowy
+    libreoffice
+    onlyoffice-desktopeditors
   ];
 
 }
