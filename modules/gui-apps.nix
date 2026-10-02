@@ -14,6 +14,7 @@
     appflowy
     libreoffice
     onlyoffice-desktopeditors
+    switcheroo
   ];
 
 }
