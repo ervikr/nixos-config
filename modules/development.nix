@@ -27,7 +27,9 @@
     opencode-desktop
 
     direnv
+
     gcc
+    uv # Python package manager
 
     man-pages
     man-pages-posix
