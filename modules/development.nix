@@ -29,6 +29,8 @@
     direnv
 
     gcc
+    libclang
+    clang-tools
     uv # Python package manager
 
     man-pages
