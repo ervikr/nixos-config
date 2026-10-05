@@ -33,6 +33,8 @@
     clang-tools
     uv # Python package manager
 
+    pangolin-cli
+
     man-pages
     man-pages-posix
   ];
