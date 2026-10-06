@@ -7,11 +7,11 @@
     github-cli
 
     # JetBrains apps
-    jetbrains.idea
-    jetbrains.datagrip
-    jetbrains.gateway
-    jetbrains.rider
-    jetbrains.webstorm
+    # jetbrains.idea
+    # jetbrains.datagrip
+    # jetbrains.gateway
+    # jetbrains.rider
+    # jetbrains.webstorm
 
     # API platform
     postman
