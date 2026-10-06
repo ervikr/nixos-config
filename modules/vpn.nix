@@ -16,7 +16,7 @@
         # Determines the IP address and subnet of the client's end of the tunnel interface.
         address = [ "192.168.1.4/32" ];
 
-        dns = [ "192.168.1.1" ];
+        # dns = [ "192.168.1.1" ];
 
         # Path to the private key file.
         #
