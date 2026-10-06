@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Main repository not updated since 2023, using a fork with last commit (per 17.09.2026)
+    # Main repository not updated since 2023, using a fork with last commit (to date)
     openconnect-sso = {
       url = "github:chpxu/openconnect-sso/bbec987524660950b7e265d7f17bcb8009d77090";
       flake = false;
