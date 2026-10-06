@@ -38,6 +38,12 @@
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
 
+  fileSystems."/mnt/windows" = {
+    device = "/dev/nvme0n1p3";
+    fsType = "ntfs3";
+    options = [ "uid=1000" "gid=1000" "rw" "user" "exec" ];
+  };
+
 
   networking.hostName = "legend"; # Define your hostname.
 
