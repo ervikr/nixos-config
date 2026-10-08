@@ -16,14 +16,14 @@
         # Determines the IP address and subnet of the client's end of the tunnel interface.
         address = [ "192.168.1.4/32" ];
 
-        # dns = [ "192.168.1.1" ];
+        dns = [ "1.1.1.1" "8.8.8.8" ];
 
         # Path to the private key file.
         #
         # Note: The private key can also be included inline via the privateKey option,
         # but this makes the private key world-readable; thus, using privateKeyFile is
         # recommended.
-        privateKeyFile = "/private/wireguard-keys";
+        privateKeyFile = "/etc/wireguard/wg0.key";
 
         peers = [
           # For a client configuration, one peer entry for the server will suffice.
@@ -33,7 +33,13 @@
 
             # List of IPs assigned to this peer within the tunnel subnet. Used to configure routing.
             # For a server peer this should be the whole subnet.
-            allowedIPs = [ "0.0.0.0/0" ];
+            allowedIPs = [ "0.0.0.0/0" "::/0"];
+
+            extraConfig = ''
+              Table = off
+              PreUp = iptables -I OUTPUT -d 192.168.1.0/24 -j ACCEPT
+              PostDown = iptables -D OUTPUT -d 192.168.1.0/24 -j ACCEPT
+            '';
 
             # Set this to the server IP and port.
             endpoint = "46.249.254.211:51820";
