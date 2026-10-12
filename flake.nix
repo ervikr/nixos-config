@@ -21,13 +21,19 @@
       flake = false;
     };
 
+    # sops-nix for secrets management
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, lanzaboote, home-manager, openconnect-sso, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, lanzaboote, home-manager, openconnect-sso, sops-nix, ... }@inputs:
     let
       # Import the variables from vars.nix
       # vars = import ./vars.nix;
@@ -48,6 +54,7 @@
           specialArgs = {
             # inherit inputs vars;
             # inherit inputs;
+            inherit sops-nix;
             pkgs-stable = pkgs-stable-import;
           };
 
@@ -57,7 +64,7 @@
           # Define modules to be included for all hosts, and append any extra modules specific to the host
           modules = [
             path
-            # sops-nix.nixosModules.sops
+            sops-nix.nixosModules.sops
 
             # Allow unfree packages
             {

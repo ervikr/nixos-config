@@ -1,0 +1,18 @@
+# Secrets - ignore only encrypted YAML files in secrets dirs
+**/secrets/*.yaml
+*.age
+
+# age keys
+age/
+.config/sops/age/
+
+# Nix
+/nix/
+
+# IDE
+.idea/
+.vscode/
+
+# Build artifacts
+*.swp
+*.swo

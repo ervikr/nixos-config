@@ -26,6 +26,7 @@
       ../../modules/proton-apps.nix
       ../../modules/shell.nix
       # ../../modules/tailscale-client.nix
+      ../../modules/sops.nix
       ../../modules/vpn.nix
       ../../modules/virtualbox.nix
       ../../modules/secureboot.nix
